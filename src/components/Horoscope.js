@@ -3,7 +3,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
+import { Button, CardActionArea } from "@mui/material";
 
 function splitDate(date) {
   let result = date.split("-");
@@ -80,19 +80,27 @@ const Horoscope = (props) => {
   let sign = zodiac_sign(day, month);
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 300, textAlign: "center", my: 1 }}>
       <CardActionArea>
         <CardMedia
           component="img"
-          height="140"
-          image="https://source.unsplash.com/random?wallpapers"
+          sx={{ maxHeight: "20%" }}
+          // image="https://source.unsplash.com/random?wallpapers"
+          image={`https://images.ganeshaspeaks.com/gsv8/zodiac-signs/ic-${sign.toLowerCase()}-color.webp`}
           alt="green iguana"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {sign}
+            Your Zodiac Sign is {sign}
           </Typography>
-          <Typography variant="body2" color="text.secondary"></Typography>
+          <Typography variant="body2" color="text.secondary">
+            You can check your Horoscope{" "}
+            <Button
+              href={`https://www.ganeshaspeaks.com/horoscopes/daily-horoscope/${sign.toLowerCase()}/`}
+            >
+              Here
+            </Button>
+          </Typography>
         </CardContent>
       </CardActionArea>
     </Card>
