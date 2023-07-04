@@ -18,10 +18,10 @@ const Quote = (props) => {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {props.text}
+            {props?.text}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {props.author}
+            {props?.author}
           </Typography>
         </CardContent>
       </CardActionArea>

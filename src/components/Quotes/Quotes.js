@@ -15,7 +15,6 @@ const getRandomItems = (allItems) => {
     const element = allItems[randomIndex];
     items.push(element);
   }
-
   return items;
 };
 
@@ -23,7 +22,6 @@ const Quotes = () => {
   const [quotes, setQuotes] = useState([]);
   useEffect(() => {
     const url = "https://type.fit/api/quotes";
-
     axios
       .get(url)
       .then((response) => {
@@ -35,7 +33,7 @@ const Quotes = () => {
       });
   }, []);
   return (
-    <Container maxWidth={500}>
+    <Container maxWidth={"500px"}>
       {quotes.map((quote, index) => (
         <Quote
           author={quote.author}

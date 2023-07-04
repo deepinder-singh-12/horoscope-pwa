@@ -29,7 +29,7 @@ const ZodiacForm = (props) => {
       component="form"
       noValidate
       onSubmit={props.onDataSubmit}
-      sx={{ mt: 1 }}
+      sx={{ m: 2 }}
     >
       <TextField
         margin="normal"

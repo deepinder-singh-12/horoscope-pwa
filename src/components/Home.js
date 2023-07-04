@@ -10,6 +10,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Horoscope from "./Horoscope";
 import ZodiacForm from "./ZodiacForm";
 import Quotes from "./Quotes/Quotes";
+import { InfiniteCards } from "./InfiniteCards";
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
@@ -76,7 +77,8 @@ export default function Home() {
               <ZodiacForm onDataSubmit={handleSubmit} />
             )}
           </Box>
-          {userData && <Quotes />}
+          {userData && <InfiniteCards />}
+          {/* {userData && <Quotes />} */}
         </Grid>
       </Grid>
     </ThemeProvider>
