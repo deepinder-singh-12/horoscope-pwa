@@ -3,7 +3,8 @@ import { useMotionValue, useTransform, useMotionTemplate } from "framer-motion";
 import SingleCard from "./SingleCard";
 import { getRandomItems, randomColor } from "../../helper/randomHelper";
 import { colors } from "../../helper/colors";
-import { axiosRequest } from "../../api/api";
+import { axiosRequest } from "../../api/axiosRequest";
+import { Box, CircularProgress } from "@mui/material";
 
 const InfiniteCards = () => {
   const [dragStart, setDragStart] = useState({
@@ -102,6 +103,16 @@ const InfiniteCards = () => {
         );
     });
   };
-  return <div className="infinite-cards">{renderCards()}</div>;
+  return (
+    <>
+      {quotes.length > 0 ? (
+        <div className="infinite-cards">{renderCards()}</div>
+      ) : (
+        <Box sx={{ display: "flex" }}>
+          <CircularProgress />
+        </Box>
+      )}
+    </>
+  );
 };
 export default InfiniteCards;
