@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import CssBaseline from "@mui/material/CssBaseline";
 import Paper from "@mui/material/Paper";
@@ -10,14 +10,16 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Horoscope from "./Horoscope";
 import ZodiacForm from "./ZodiacForm";
 import Quotes from "./Quotes/Quotes";
-import { InfiniteCards } from "./InfiniteCards";
-
-// TODO remove, this demo shouldn't need to reset the theme.
+import Switch from "@mui/material/Switch";
+import Stack from "@mui/material/Stack";
+import InfiniteCards from "./InfiniteCards/InfiniteCards";
 
 const defaultTheme = createTheme();
 
 export default function Home() {
-  const [userData, setUserData] = React.useState(null);
+  const [userData, setUserData] = useState(null);
+  const [swiperChecked, setSwiperChecked] = useState(false);
+  const handleSwiperChecked = () => setSwiperChecked((prevState) => !prevState);
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -76,9 +78,21 @@ export default function Home() {
             ) : (
               <ZodiacForm onDataSubmit={handleSubmit} />
             )}
+            {userData && (
+              <>
+                <Stack direction="row" spacing={1} alignItems="center">
+                  <Typography>List Quotes</Typography>
+                  <Switch
+                    checked={swiperChecked}
+                    onChange={handleSwiperChecked}
+                    inputProps={{ "aria-label": "controlled" }}
+                  />
+                  <Typography>Swipe Quotes</Typography>
+                </Stack>
+                <>{swiperChecked ? <InfiniteCards /> : <Quotes />}</>
+              </>
+            )}
           </Box>
-          {userData && <InfiniteCards />}
-          {/* {userData && <Quotes />} */}
         </Grid>
       </Grid>
     </ThemeProvider>

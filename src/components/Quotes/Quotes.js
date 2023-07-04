@@ -1,29 +1,14 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import Quote from "./Quote";
+import { getRandomItems } from "../../helper/randomHelper";
 import { Container } from "@mui/material";
-// Function to generate random number
-function randomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min) + min);
-}
-
-const getRandomItems = (allItems) => {
-  const items = [];
-  const max = allItems.length - 1;
-  for (let i = 0; i < 10; i++) {
-    const randomIndex = randomNumber(0, max);
-    const element = allItems[randomIndex];
-    items.push(element);
-  }
-  return items;
-};
+import { axiosRequest } from "../../api/api";
 
 const Quotes = () => {
   const [quotes, setQuotes] = useState([]);
   useEffect(() => {
-    const url = "https://type.fit/api/quotes";
-    axios
-      .get(url)
+    axiosRequest
+      .get("/quotes")
       .then((response) => {
         const randomQuotes = getRandomItems(response.data);
         setQuotes(randomQuotes);
@@ -33,7 +18,13 @@ const Quotes = () => {
       });
   }, []);
   return (
-    <Container maxWidth={"500px"}>
+    <Container
+      sx={{
+        maxHeight: 700,
+        maxWidth: 500,
+        overflowY: "scroll",
+      }}
+    >
       {quotes.map((quote, index) => (
         <Quote
           author={quote.author}
