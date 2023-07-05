@@ -1,22 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Quote from "./Quote";
 import { getRandomItems } from "../../helper/randomHelper";
-import { Box, Container } from "@mui/material";
-import CircularProgress from "@mui/material/CircularProgress";
-import { axiosRequest } from "../../api/axiosRequest";
+import { Box, Container, CircularProgress } from "@mui/material";
+import { getQuotes } from "../../services/quotes";
 
 const Quotes = () => {
   const [quotes, setQuotes] = useState([]);
   useEffect(() => {
-    axiosRequest
-      .get("/quotes")
-      .then((response) => {
-        const randomQuotes = getRandomItems(response.data);
-        setQuotes(randomQuotes);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    (async () => {
+      const response = await getQuotes();
+      const randomQuotes = getRandomItems(response.data);
+      setQuotes(randomQuotes);
+    })();
   }, []);
   return (
     <>

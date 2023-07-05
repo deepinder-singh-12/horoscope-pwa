@@ -1,18 +1,21 @@
 import React, { useState } from "react";
-import Avatar from "@mui/material/Avatar";
-import CssBaseline from "@mui/material/CssBaseline";
-import Paper from "@mui/material/Paper";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
+import {
+  Switch,
+  Stack,
+  Avatar,
+  CssBaseline,
+  Paper,
+  Box,
+  Grid,
+  Typography,
+} from "@mui/material";
 import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
-import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Horoscope from "./Horoscope";
 import ZodiacForm from "./ZodiacForm";
 import Quotes from "./Quotes/Quotes";
-import Switch from "@mui/material/Switch";
-import Stack from "@mui/material/Stack";
 import InfiniteCards from "./InfiniteCards/InfiniteCards";
+import { APP_CONSTS } from "../enums/enums";
 
 const defaultTheme = createTheme();
 
@@ -32,7 +35,7 @@ export default function Home() {
         dob: dob,
       });
     } else {
-      alert("Please Enter Valid Name and Date");
+      alert(APP_CONSTS.ALERT);
     }
   };
 

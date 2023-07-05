@@ -1,9 +1,7 @@
 import { motion } from "framer-motion";
 import "./infinite.css";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
+import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { APP_CONSTS } from "../../enums/enums";
 
 const SingleCard = ({ card, style, onDirectionLock, onDragEnd, animate }) => {
   return (
@@ -25,11 +23,7 @@ const SingleCard = ({ card, style, onDirectionLock, onDragEnd, animate }) => {
         <CardMedia
           component="img"
           sx={{ maxHeight: 200 }}
-          image={
-            card.img
-              ? card.img
-              : `https://source.unsplash.com/random?wallpapers`
-          }
+          image={card.img ? card.img : `${APP_CONSTS.RANDOM_IMAGE}1`}
           alt="swiper-image"
         />
         <CardContent>

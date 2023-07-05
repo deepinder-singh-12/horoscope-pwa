@@ -1,5 +1,9 @@
-import axios from "axios";
+import { axiosCreate } from "./axiosCreate";
 
-export const axiosRequest = axios.create({
-  baseURL: "https://type.fit/api",
-});
+// GET request method of axios
+export const get = async (path) => {
+  return axiosCreate
+    .get(path)
+    .then((response) => response)
+    .catch((error) => error);
+};

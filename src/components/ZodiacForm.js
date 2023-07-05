@@ -1,7 +1,5 @@
 import React from "react";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
+import { Button, Box, TextField } from "@mui/material";
 import Copyright from "./Copyright";
 
 const ZodiacForm = (props) => {

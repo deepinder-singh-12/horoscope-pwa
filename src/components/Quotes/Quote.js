@@ -1,11 +1,9 @@
 import React from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
+import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { APP_CONSTS } from "../../enums/enums";
 
 const Quote = (props) => {
-  const img = `https://source.unsplash.com/random?wallpapers&${props.index}`;
+  const img = `${APP_CONSTS.RANDOM_IMAGE}${props.index}`;
   return (
     <Card sx={{ maxWidth: "100%", textAlign: "center", my: 2 }}>
       <CardMedia

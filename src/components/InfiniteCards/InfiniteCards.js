@@ -3,8 +3,9 @@ import { useMotionValue, useTransform, useMotionTemplate } from "framer-motion";
 import SingleCard from "./SingleCard";
 import { getRandomItems, randomColor } from "../../helper/randomHelper";
 import { colors } from "../../helper/colors";
-import { axiosRequest } from "../../api/axiosRequest";
 import { Box, CircularProgress } from "@mui/material";
+import { APP_CONSTS } from "../../enums/enums";
+import { getQuotes } from "../../services/quotes";
 
 const InfiniteCards = () => {
   const [dragStart, setDragStart] = useState({
@@ -13,27 +14,25 @@ const InfiniteCards = () => {
   });
   const [quotes, setQuotes] = useState([]);
   const [cards, setCards] = useState([
-    { text: "Swipe me To get random quotes!", background: colors[2] },
+    { text: APP_CONSTS.SWIPER_DEFAULT, background: colors[2] },
   ]);
 
   useEffect(() => {
-    axiosRequest
-      .get("/quotes")
-      .then((response) => {
+    (async () => {
+      const response = await getQuotes();
+      if (response.data) {
         let randomQuotes = getRandomItems(response.data);
         randomQuotes = randomQuotes.map((quote, index) => {
           return {
             author: quote.author,
             text: quote.text,
             background: randomColor(cards[0].background),
-            img: `https://source.unsplash.com/random?wallpapers&${index}`,
+            img: `${APP_CONSTS.RANDOM_IMAGE}${index}`,
           };
         });
         setQuotes(randomQuotes);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+      }
+    })();
   }, []);
   const x = useMotionValue(0);
   const y = useMotionValue(0);

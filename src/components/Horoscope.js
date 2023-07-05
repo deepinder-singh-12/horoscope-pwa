@@ -1,26 +1,15 @@
 import * as React from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { Button } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  Button,
+} from "@mui/material";
 import { zodiac_sign } from "../helper/zodiacsigns";
 import { splitDate } from "../helper/date-split";
-
-const monthNames = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
+import { APP_CONSTS } from "../enums/enums";
+import { monthNames } from "../helper/month";
 
 const Horoscope = (props) => {
   const splittedDate = splitDate(props.userData.dob);
@@ -39,7 +28,7 @@ const Horoscope = (props) => {
             md: 200,
           },
         }}
-        image={`https://images.ganeshaspeaks.com/gsv8/zodiac-signs/ic-${sign.toLowerCase()}-color.webp`}
+        image={`${APP_CONSTS.HOROSCOPE_IMAGE}${sign.toLowerCase()}-color.webp`}
         alt="green iguana"
       />
       <CardContent>
@@ -48,9 +37,7 @@ const Horoscope = (props) => {
         </Typography>
         <Typography variant="body2" color="text.secondary">
           You can check your Horoscope{" "}
-          <Button
-            href={`https://www.ganeshaspeaks.com/horoscopes/daily-horoscope/${sign.toLowerCase()}/`}
-          >
+          <Button href={`${APP_CONSTS.HOROSCOPE}${sign.toLowerCase()}/`}>
             Here
           </Button>
         </Typography>
